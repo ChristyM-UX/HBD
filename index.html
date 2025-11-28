@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Birthday, Christy! 🎉</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: radial-gradient(circle at top left, #ffd3e8, #c9e7ff, #fff5d6);
+      --primary: #22223b;
+      --accent: #f28482;
+      --accent-soft: rgba(242, 132, 130, 0.1);
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.18);
+      --radius-xl: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      padding: 24px;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .card {
+        padding: 40px 48px;
+      }
+    }
+
+    .confetti-dot {
+      position: absolute;
+      border-radius: 999px;
+      opacity: 0.22;
+      filter: blur(1px);
+      pointer-events: none;
+    }
+
+    .confetti-dot.dot1 { width: 180px; height: 180px; background: #f28482; top: -60px; right: -40px; }
+    .confetti-dot.dot2 { width: 120px; height: 120px; background: #84a59d; bottom: -40px; left: -20px; }
+    .confetti-dot.dot3 { width: 80px; height: 80px; background: #f6bd60; top: 40%; left: -30px; }
+    .confetti-dot.dot4 { width: 60px; height: 60px; background: #e5989b; bottom: 12%; right: 12%; }
+
+    header {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #7f1d1d;
+    }
+
+    .sparkle {
+      font-size: 1rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 3vw + 1.5rem, 2.9rem);
+      line-height: 1.05;
+      margin: 14px 0 6px;
+    }
+
+    h1 span.highlight {
+      background: linear-gradient(120deg, #f28482, #f6bd60);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      font-size: 0.98rem;
+      max-width: 34rem;
+      color: #4b5563;
+    }
+
+    .body {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .body {
+        grid-template-columns: 3fr 2fr;
+        align-items: flex-start;
+        gap: 32px;
+      }
+    }
+
+    .message {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: #374151;
+    }
+
+    .message p + p {
+      margin-top: 10px;
+    }
+
+    .signature {
+      margin-top: 18px;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    .signature strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .panel {
+      background: #fdfdfd;
+      border-radius: 20px;
+      padding: 18px 16px;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+    }
+
+    .panel-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+
+    .panel h2 {
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .pill {
+      font-size: 0.75rem;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.13);
+      color: #4b5563;
+    }
+
+    a.button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 14px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      text-decoration: none;
+      border: 1px solid rgba(15, 23, 42, 0.16);
+      color: var(--primary);
+      background: white;
+      transition: background 0.15s ease, transform 0.12s ease, box-shadow 0.12s ease;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.06);
+    }
+
+    a.button:hover {
+      background: #f9fafb;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+    }
+
+    a.button span.icon {
+      font-size: 1.1rem;
+    }
+
+    footer {
+      margin-top: 24px;
+      font-size: 0.78rem;
+      color: #9ca3af;
+      text-align: left;
+      position: relative;
+      z-index: 1;
+    }
+
+    footer a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="card">
+      <!-- Soft confetti blobs -->
+      <div class="confetti-dot dot1"></div>
+      <div class="confetti-dot dot2"></div>
+      <div class="confetti-dot dot3"></div>
+      <div class="confetti-dot dot4"></div>
+
+      <header>
+        <div class="eyebrow">
+          <span class="sparkle">✨</span>
+          <span>Birthday surprise</span>
+        </div>
+        <h1>
+          Happy Birthday, <span class="highlight">Christy</span>!
+        </h1>
+        <p class="subtitle">
+          This isn’t just a page. It’s the start of your own space on the internet — for your ideas, your work, and your UX career.
+        </p>
+      </header>
+
+      <div class="body">
+        <div class="message">
+          <p>
+            You now officially own <strong>christy.me</strong>.
+          </p>
+          <p>
+            The plan: turn this into your personal UX portfolio and, whenever you’re ready, your business home base. Case studies, experiments, services, contact — all living here, under your name.
+          </p>
+          <p>
+            For now, enjoy the birthday landing page. Soon, this will be where people come to see what you create.
+          </p>
+
+          <div class="signature">
+            With love and a lot of faith in your future,<br />
+            <strong>[Your name here]</strong>
+          </div>
+        </div>
+
+        <aside class="panel">
+          <div class="panel-title">What this gift includes</div>
+          <h2>Your own domain & starter site</h2>
+          <p style="font-size: 0.9rem; color:#4b5563;">
+            You’ll get full control of:
+          </p>
+          <div class="pill-list">
+            <span class="pill">Custom domain</span>
+            <span class="pill">Portfolio-ready setup</span>
+            <span class="pill">Room to grow a business</span>
+            <span class="pill">Email @christy.me</span>
+          </div>
+
+          <!-- Update this link once portfolio.html is live -->
+          <a href="portfolio.html" class="button">
+            <span class="icon">👉</span>
+            <span>Preview your future portfolio</span>
+          </a>
+        </aside>
+      </div>
+
+      <footer>
+        You’ll be able to edit, redesign, or completely rebuild this site however you like.
+        For now, it’s here to say: <strong>you’re worth investing in.</strong>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>
